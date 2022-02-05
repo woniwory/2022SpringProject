@@ -50,15 +50,12 @@ import java.util.List;
                     true: false;
         }
 
-        @PatchMapping("/api/users/status/update")
-        public boolean statusUpdate(@RequestBody UserForm dto){
-            log.info(dto.toString());
-            User user = userService.statusUpdate(dto);
-            return (user != null) ?
-                    true: false;
+        @PatchMapping("/api/users/{useridx}/update")
+        public void statusUpdate(@PathVariable Long useridx){
+            User user = userService.statusUpdate(useridx);
         }
 
-        @GetMapping("/api/users/{useridx}/delete")
+        @DeleteMapping("/api/users/{useridx}/delete")
         public void delete (@PathVariable Long useridx){
             userService.delete(useridx);
         }

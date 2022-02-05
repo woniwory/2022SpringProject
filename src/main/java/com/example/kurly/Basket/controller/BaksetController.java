@@ -3,6 +3,7 @@ package com.example.kurly.Basket.controller;
 import com.example.kurly.Basket.dto.BasketForm;
 import com.example.kurly.Basket.entity.Basket;
 import com.example.kurly.Basket.service.BasketService;
+import com.example.kurly.Basket.entity.Basket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,16 @@ public class BaksetController {
         return (created != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(created):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PatchMapping("/api/Baskets/{Basketidx}/update")
+    public void statusUpdate(@PathVariable Long Basketidx){
+        Basket Basket = basketService.statusUpdate(Basketidx);
+    }
+
+    @DeleteMapping("/api/Baskets/{Basketidx}/delete")
+    public void delete (@PathVariable Long Basketidx){
+        basketService.delete(Basketidx);
     }
 
 

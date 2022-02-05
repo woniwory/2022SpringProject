@@ -1,18 +1,16 @@
 package com.example.kurly.Ordering.controller;
 
 import com.example.kurly.Ordering.entity.Ordering;
-import com.example.kurly.Ordering.service.OrderingService;
+
 import com.example.kurly.Ordering.dto.OrderingForm;
-import com.example.kurly.Ordering.entity.Ordering;
 import com.example.kurly.Ordering.service.OrderingService;
+import com.example.kurly.Ordering.entity.Ordering;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +34,16 @@ public class OrderingController{
         return (created != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(created):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PatchMapping("/api/ordering/{orderingidx}/update")
+    public void statusUpdate(@PathVariable Long orderingidx){
+        Ordering Ordering = orderingService.statusUpdate(orderingidx);
+    }
+
+    @DeleteMapping("/api/ordering/{orderingidx}/delete")
+    public void delete (@PathVariable Long orderingidx){
+        orderingService.delete(orderingidx);
     }
    
 

@@ -55,10 +55,10 @@ public class UserService{
         return check;
     }
 
-    public User statusUpdate(UserForm dto){
-        User user = dto.toEntity();
-        user.setStatus("N");
-        return userRepository.save(user);
+    public User statusUpdate(Long useridx){
+        User target = userRepository.findById(useridx).orElse(null);
+        target.setStatus("N");
+        return userRepository.save(target);
     }
 
     public void delete(Long useridx){

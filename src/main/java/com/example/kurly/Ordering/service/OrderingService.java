@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
@@ -16,7 +17,7 @@ import java.util.List;
 public class OrderingService {
     @Autowired
     private OrderingRepository orderingRepository;
-    //전체 Ordering조회 함수
+    //전체 ordering조회 함수
     public List<Ordering> getAllOrderings() {
         return orderingRepository.findAll();
     }
@@ -29,14 +30,29 @@ public class OrderingService {
         log.info(target.toString()); //db에 저장된 객체를 찍어보기
         return target;
     }
-    //Ordering생성
+    //ordering생성
     public Ordering create(OrderingForm dto) {
-        Ordering Ordering = dto.toEntity();
-        if(Ordering.getOrderingIdx() != null){
+        Ordering ordering = dto.toEntity();
+        if(ordering.getOrderingIdx() != null){
             return null;
         }
-        return orderingRepository.save(Ordering);
+        return orderingRepository.save(ordering);
     }
-    //로그인
+    public Ordering statusUpdate(Long orderingidx){
+        Ordering target = orderingRepository.findById(orderingidx).orElse(null);
+        target.setStatus("N");
+        return orderingRepository.save(target);
+    }
 
+    public void delete(Long orderingidx){
+        Ordering target = orderingRepository.findById(orderingidx).orElse(null);
+
+        if (target != null){
+            orderingRepository.delete(target);
+        }
+    }
 }
+
+
+
+

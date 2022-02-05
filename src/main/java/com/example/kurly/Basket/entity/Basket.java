@@ -1,9 +1,6 @@
 package com.example.kurly.Basket.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 @Getter
+@Setter
 @Entity
 public class Basket {
 

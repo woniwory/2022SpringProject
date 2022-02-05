@@ -1,9 +1,6 @@
 package com.example.kurly.Ordering.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor  //디폴트 생성자 추가
 @ToString
 @Getter //모든 get을 사용가능
+@Setter
 @Entity // DB가 해당 객체를 인식 가능!
 public class Ordering {
 
