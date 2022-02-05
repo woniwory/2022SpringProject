@@ -1,8 +1,10 @@
-package com.example.kurly.Basket.controller;
+package com.example.kurly.Ordering.controller;
 
-import com.example.kurly.Basket.dto.BasketForm;
-import com.example.kurly.Basket.entity.Basket;
-import com.example.kurly.Basket.service.BasketService;
+import com.example.kurly.Ordering.entity.Ordering;
+import com.example.kurly.Ordering.service.OrderingService;
+import com.example.kurly.Ordering.dto.OrderingForm;
+import com.example.kurly.Ordering.entity.Ordering;
+import com.example.kurly.Ordering.service.OrderingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,36 +16,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-
 @RestController
 @Slf4j
-public class BaksetController {
+public class OrderingController{
     @Autowired
-    private BasketService basketService;
+    private OrderingService orderingService;
 
     //모든 회원 정보 가져오기
-    @GetMapping("/Baskets/getAll")
-    public List<Basket> getAllBaskets(){
-        return basketService.getAllBaskets();
+    @GetMapping("/order/getAll")
+    public List<Ordering> getAllOrderings(){
+        return orderingService.getAllOrderings();
     }
 
     //회원가입할 때, 잘 입력됐으면 정보 전송
-    @PostMapping("/api/Baskets/create")
-    public ResponseEntity<Basket> create(@RequestBody BasketForm dto){
+    @PostMapping("/api/order/create")
+    public ResponseEntity<Ordering> create(@RequestBody OrderingForm dto){
         log.info(dto.toString());
-        Basket created = basketService.create(dto);
+        Ordering created = orderingService.create(dto);
         return (created != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(created):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-
+   
 
 }
 

@@ -1,10 +1,8 @@
 package com.example.kurly.User.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,53 +12,56 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 @Getter
+@Setter
 @Entity
+@DynamicUpdate
 public class User {
 
     @Id
     @GeneratedValue
+    @Column(name = "userIdx")
     private Long userIdx;
 
-    @Column(length = 45, nullable = false)
+    @Column(name = "userID", length = 45, nullable = false)
     private String userID;
 
-    @Column(length = 45, nullable = false)
+    @Column(name = "userPassword",length = 45, nullable = false)
     private String userPassword;
 
-    @Column(length = 45, nullable = false)
+    @Column(name = "userName", length = 45, nullable = false)
     private String userName;
 
-    @Column(length = 45)
+    @Column(name = "userEmail",length = 45)
     private String userEmail;
 
-    @Column(length = 45)
+    @Column(name = "userPhoneNum",length = 45)
     private String userPhoneNum;
 
-    @Column(length = 45)
+    @Column(name = "userLocation",length = 45)
     private String userLocation;
 
-    @Column(columnDefinition ="char")
+    @Column(name = "userGender",columnDefinition ="char")
     private String userGender;
 
     //@Temporal(TemporalType.TIMESTAMP)
     //@ColumnDefault("0") //default 0
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "userBirth",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date userBirth;
 
 
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @ColumnDefault("0") //default 0
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "createdAt",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @ColumnDefault("0") //default 0
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "updatedAt",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    @Column(columnDefinition ="char")
+    @Column(name = "status",columnDefinition ="char")
     @ColumnDefault("'Y'")
     private String status;
 

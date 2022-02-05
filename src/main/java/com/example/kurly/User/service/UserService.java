@@ -54,4 +54,18 @@ public class UserService{
         }
         return check;
     }
+
+    public User statusUpdate(UserForm dto){
+        User user = dto.toEntity();
+        user.setStatus("N");
+        return userRepository.save(user);
+    }
+
+    public void delete(Long useridx){
+        User target = userRepository.findById(useridx).orElse(null);
+
+        if (target != null){
+            userRepository.delete(target);
+        }
+    }
 }
